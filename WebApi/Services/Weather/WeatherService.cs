@@ -42,7 +42,7 @@ public class WeatherService : BaseService<WeatherService>, IWeatherService {
 		};
 
 		var details = await CommonRepository.Get(filter, findOptions);
-		var dto = details.ToDto();
+		var dto = details?.ToDto();
 		return dto;
 	}
 

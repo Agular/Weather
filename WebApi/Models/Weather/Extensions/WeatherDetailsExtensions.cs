@@ -33,6 +33,7 @@ public static class WeatherDetailsExtensions {
 
 	public static WeatherDetailsDto ToDto(this WeatherDetails weatherDetails) {
 		var dto = new WeatherDetailsDto {
+			Id = weatherDetails.Id,
 			LocationName = weatherDetails.LocationName,
 			Latitude = weatherDetails.Latitude,
 			Longitude = weatherDetails.Longitude,

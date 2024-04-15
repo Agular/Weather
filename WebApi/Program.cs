@@ -45,6 +45,17 @@ services.AddScoped<IExternalWeatherService, OwmWeatherService>();
 builder.AddCustomHangfire(mongoClient, mongoDbConfiguration.DatabaseName);
 services.AddHangfireServer();
 
+services.AddCors(options => options.AddPolicy("AllowAllHeaders",
+	builder => {
+		builder
+			.AllowAnyHeader()
+			.AllowAnyMethod()
+			.AllowCredentials()
+			.WithExposedHeaders("Content-Disposition")
+			.SetIsOriginAllowed(_ => true);
+	})
+);
+
 var app = builder.Build();
 
 await app.SeedDatabase();
@@ -56,6 +67,8 @@ if (app.Environment.IsDevelopment()) {
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAllHeaders");
 
 app.UseHttpsRedirection();
 

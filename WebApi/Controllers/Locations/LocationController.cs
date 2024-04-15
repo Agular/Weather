@@ -6,7 +6,7 @@ using WebApi.Services.Locations;
 
 namespace WebApi.Controllers.Locations;
 
-[Route("/api/location")]
+[Route("/api/locations")]
 public class LocationController : BaseController {
 	private readonly ILocationService _locationService;
 
